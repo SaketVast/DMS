@@ -3,7 +3,9 @@ const docTypes = require("./doc-types/doc-types.service.js");
 const fields = require("./fields/fields.service.js");
 const departments = require("./departments/departments.service.js");
 const docTypesFields = require("./doc-types-fields/doc-types-fields.service.js");
-const documents = require('./documents/documents.service.js');
+const documents = require("./documents/documents.service.js");
+const indexer = require('./indexer/indexer.service.js');
+const uploads = require('./uploads/uploads.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
@@ -12,4 +14,6 @@ module.exports = function (app) {
   app.configure(departments);
   app.configure(docTypesFields);
   app.configure(documents);
+  app.configure(indexer);
+  app.configure(uploads);
 };

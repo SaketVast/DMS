@@ -1,5 +1,5 @@
-const { authenticate } = require("@feathersjs/authentication").hooks;
-const schema = require("./fields.models");
+// const { authenticate } = require("@feathersjs/authentication").hooks;
+const { schema } = require("./fields.models");
 const validate = require("feathers-validate-joi");
 
 module.exports = {
@@ -7,8 +7,8 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [authenticate("jwt"), validate.form(schema, { abortEarly: true })],
-    update: [],
+    create: [validate.form(schema, { abortEarly: false })],
+    update: [validate.form(schema, { abortEarly: false })],
     patch: [],
     remove: [],
   },

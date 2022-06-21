@@ -6,10 +6,9 @@ const fetchFields = require("./Hooks/fetchFields");
 module.exports = {
   before: {
     all: [],
-    find: [],
+    find: [(hook) => {}],
     get: [],
     create: [
-      authenticate("jwt"),
       validate.form(schema, { abortEarly: false }),
       fetchDocType(),
       fetchFields(),

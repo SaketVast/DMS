@@ -9,7 +9,7 @@ module.exports = {
     find: [],
     get: [],
     create: [validate.form(schema, { abortEarly: false }), fetchDepartment()],
-    update: [],
+    update: [validate.form(schema, { abortEarly: false }), fetchDepartment()],
     patch: [],
     remove: [],
   },

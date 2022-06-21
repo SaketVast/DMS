@@ -1,4 +1,4 @@
-// const fetchDepartment = require("../Departments/departments.Model.Schema");
+const fetchDepartment = require("../Departments/departments.Model.Schema");
 module.exports = function (app) {
   // const { objectId } = require("@feathers-plus/validate-joi-mongodb");
 
@@ -35,7 +35,7 @@ module.exports = function (app) {
         required: true,
       },
       departments: {
-        // type: fetchDepartment(app),
+        type: fetchDepartment(app),
         type: String,
       },
       userName: {

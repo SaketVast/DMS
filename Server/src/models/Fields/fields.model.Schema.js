@@ -7,6 +7,9 @@ module.exports = function (app) {
       fieldName: {
         name: {
           type: String,
+          required: true,
+          minLength: 3,
+          maxLength: 50,
         },
         label: {
           type: String,
