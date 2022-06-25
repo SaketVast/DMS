@@ -7,12 +7,11 @@ const schema = Joi.object({
 
   email: Joi.string().min(5).max(50).lowercase().required(),
   phone: Joi.string().min(6).max(10).required(),
-  departmentId: objectId(),
+  departments: Joi.array().items(objectId()).required(),
   userName: Joi.string().min(3).max(20).required(),
   password: Joi.string().min(8).max(1024).required(),
-  role: Joi.string().required(true),
-  isAdmin: Joi.boolean().required(),
-  isActive: Joi.boolean().required(),
-  updatedBy: objectId(),
+
+  isAdmin: Joi.boolean(),
+  isActive: Joi.boolean(),
 });
 module.exports.schema = schema;

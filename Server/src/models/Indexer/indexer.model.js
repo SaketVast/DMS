@@ -35,6 +35,10 @@ module.exports = function (app) {
         maxLength: 1024,
         required: true,
       },
+      role: {
+        type: String,
+        default: "indexer",
+      },
     },
     {
       timestamps: true,

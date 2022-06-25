@@ -5,5 +5,6 @@ const schema = Joi.object({
   email: Joi.string().min(5).max(50).lowercase().unique().required(),
   userName: Joi.string().min(3).max(50).unique().required(),
   password: Joi.string().min(8).max(1024).required(),
+  role: Joi.string(),
 });
 module.exports.schema = schema;

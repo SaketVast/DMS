@@ -1,7 +1,7 @@
 const { authenticate } = require("@feathersjs/authentication").hooks;
 const { hashPassword, protect } =
   require("@feathersjs/authentication-local").hooks;
-// const fetchDepartment = require("./hooks/fetchDepartment");
+const fetchDepartment = require("./hooks/fetchDepartment");
 const validate = require("feathers-validate-joi");
 const { schema } = require("./users.models");
 module.exports = {
@@ -11,8 +11,8 @@ module.exports = {
     get: [],
     create: [
       hashPassword("password"),
-      // validate.form(schema, { abortEarly: false }),
-      // fetchDepartment(),
+      validate.form(schema, { abortEarly: false }),
+      fetchDepartment(),
     ],
 
     update: [hashPassword("password"), authenticate("jwt")],

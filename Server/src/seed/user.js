@@ -6,7 +6,6 @@ module.exports = () => {
     phone: "1234567890",
     userName: "saketS",
     password: "12345678",
-    role: "Admin",
     isAdmin: true,
     isActive: true,
   };

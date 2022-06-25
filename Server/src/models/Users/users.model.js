@@ -1,12 +1,11 @@
-const fetchDepartment = require("../Departments/departments.Model.Schema");
 module.exports = function (app) {
+  const fetchDepartment = require("../Departments/departments.Model.Schema");
   // const { objectId } = require("@feathers-plus/validate-joi-mongodb");
 
   const modelName = "users";
-
-  const mongoose = require("mongoose");
   const mongooseClient = app.get("mongooseClient");
-  const schema = new mongooseClient.Schema(
+  const { Schema } = mongooseClient;
+  const schema = new Schema(
     {
       firstName: {
         type: String,
@@ -25,7 +24,7 @@ module.exports = function (app) {
         minlength: 5,
         maxlength: 50,
         lowercase: true,
-        unique: true,
+
         required: true,
       },
       phone: {
@@ -34,10 +33,13 @@ module.exports = function (app) {
         maxlength: 10,
         required: true,
       },
-      departments: {
-        type: fetchDepartment(app),
-        type: String,
-      },
+      departments: [
+        {
+          type: fetchDepartment(app),
+          required: true,
+        },
+      ],
+
       userName: {
         type: String,
         minlength: 3,
@@ -52,10 +54,7 @@ module.exports = function (app) {
         maxlength: 1024,
         required: true,
       },
-      role: {
-        type: String,
-        required: true,
-      },
+
       lastLoggedIn: {
         type: Date,
         default: Date.now,
@@ -68,14 +67,13 @@ module.exports = function (app) {
         type: Boolean,
         default: true,
       },
-      updatedBy: {
-        // default: null,
-      },
+
       updatedAt: {
         type: Date,
         default: Date.now,
       },
     },
+
     {
       timestamps: true,
     }
