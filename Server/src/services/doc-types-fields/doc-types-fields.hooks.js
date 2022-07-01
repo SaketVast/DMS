@@ -13,7 +13,7 @@ module.exports = {
       fetchDocType(),
       fetchFields(),
     ],
-    update: [],
+    update: [fetchDocType(), fetchFields()],
     patch: [],
     remove: [],
   },

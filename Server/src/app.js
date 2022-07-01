@@ -21,8 +21,8 @@ const mongoose = require("./mongoose");
 
 const app = express(feathers());
 
-const admin = require("./seed/admin");
-const user = require("./seed/user");
+const admin = require("./script/admin");
+const user = require("./script/user");
 // Load app configuration
 app.configure(configuration());
 // Enable security, CORS, compression, favicon and body parsing

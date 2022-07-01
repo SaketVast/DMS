@@ -8,10 +8,14 @@ module.exports = function (app) {
     {
       docTypeCode: {
         type: String,
+        minLength: 3,
+        maxLength: 10,
         required: true,
       },
       docName: {
         type: String,
+        minLength: 2,
+        maxLength: 50,
         required: true,
       },
       department: {

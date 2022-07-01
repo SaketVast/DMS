@@ -1,6 +1,9 @@
 {
   "dependencies": {
     "daisyui": "^2.15.4",
+    "feathers-mongodb": "^6.4.1",
+    "moment": "^2.29.3",
+    "mongodb": "^4.7.0",
     "multiselect-react-dropdown": "^2.0.22"
   }
 }

@@ -2,6 +2,7 @@ module.exports = function (app) {
   const modelName = "documents";
   const mongooseClient = app.get("mongooseClient");
   const { Schema } = mongooseClient;
+
   const schema = new Schema(
     {
       docName: {
@@ -10,14 +11,14 @@ module.exports = function (app) {
       docPath: {
         type: String,
       },
-      indexingInfo: {
-        docTypeFieldId: {
-          type: String,
-        },
-      },
+      indexingInfo: {},
       dcn: {
         type: String,
       },
+      department: {
+        type: String,
+      },
+
       date: {
         type: Date,
       },

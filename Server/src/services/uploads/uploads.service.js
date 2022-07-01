@@ -8,20 +8,19 @@ module.exports = function (app) {
   const blobStorage = fs(app.get("uploadFilePath"));
   const options = {
     name: "upload",
-    Model: blobStorage,
+    Model: blobStorage, //blob storage to handle the model
   };
 
   // Initialize our service with any options it requires
   app.use(
     "/upload",
 
-    multipartMiddleware.single("file"),
+    multipartMiddleware.single("file"), // file is attribute
 
     // another middleware, this time to
     // transfer the received files to feathers
     function (req, res, next) {
       const docData = JSON.parse(req.body.data);
-      console.log(req.file);
       req.feathers.file = req.file;
       next();
     },
@@ -37,10 +36,8 @@ module.exports = function (app) {
           try {
             if (!hook.data.uri && hook.params.file) {
               const file = hook.params.file;
-
-              const uri = dauria.getBase64DataURI(file.buffer, file.mimetype);
+              const uri = dauria.getBase64DataURI(file.buffer, file.mimetype); // encoded string that represents a file
               hook.data = { uri: uri };
-              // console.log(hook);
             }
           } catch (e) {
             console.log(e);
@@ -49,9 +46,25 @@ module.exports = function (app) {
       ],
     },
     after: {
-      //create: [discard('uri')]
+      create: [
+        async (hook) => {
+          const data = JSON.parse(hook?.arguments[0]?.data);
+          if (data) {
+            try {
+              await hook.app.service("documents").create({
+                // created an object of data and passed it to document service
+                docName: data.name,
+                indexingInfo: data.indexingInfo,
+                docPath: `${app.get("uploadFilePath")}/${hook.result.id}`,
+                department: data.department,
+                dcn: data.customDeptCode,
+              });
+            } catch (e) {
+              console.error(e);
+            }
+          }
+        },
+      ],
     },
   });
-
-  // service.hooks(hooks);
 };
